@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "./components/Nav";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/utils/authOptions";
+import Hydrate from "./components/Hydrate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="mx-64">
-        <Nav user={session?.user} expires={session?.expires as string} />
-        {children}
+        <Hydrate>
+          <Nav user={session?.user} expires={session?.expires as string} />
+          {children}
+        </Hydrate>
       </body>
     </html>
   );
