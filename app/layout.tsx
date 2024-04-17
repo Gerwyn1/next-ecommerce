@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/utils/authOptions";
 import Hydrate from "./components/Hydrate";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +26,19 @@ export default async function RootLayout({
     <html lang="en">
       <body className="mx-64">
         <Hydrate>
-          <Nav user={session?.user} expires={session?.expires as string} />
+          <Nav user={session?.user} expires={session?.expires} />
           {children}
         </Hydrate>
       </body>
+      <footer>
+        <Link
+          className="inline-block w-full text-center"
+          href="https://www.flaticon.com/free-icons/basket"
+          title="basket icons"
+        >
+          Basket icons created by Freepik - Flaticon
+        </Link>
+      </footer>
     </html>
   );
 }
