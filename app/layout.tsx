@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/utils/authOptions";
 import Hydrate from "./components/Hydrate";
 import Link from "next/link";
+import { Roboto, Lobster_Two } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// define main font
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-robot",
+});
+
+const lobster = Lobster_Two({
+  weight: ["700"],
+  subsets: ["latin"],
+  variable: "--font-lobster",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +35,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="mx-64">
+      <body className={`mx-64 ${roboto.className}`}>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires} />
           {children}
