@@ -39,17 +39,17 @@ export default async function RootLayout({
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires} />
           {children}
+          <footer className="mt-24">
+            <Link
+              className="inline-block w-full text-center"
+              href="https://www.flaticon.com/free-icons/basket"
+              title="basket icons"
+            >
+              Basket icons created by Freepik - Flaticon
+            </Link>
+          </footer>
         </Hydrate>
       </body>
-      <footer>
-        <Link
-          className="inline-block w-full text-center"
-          href="https://www.flaticon.com/free-icons/basket"
-          title="basket icons"
-        >
-          Basket icons created by Freepik - Flaticon
-        </Link>
-      </footer>
     </html>
   );
 }
