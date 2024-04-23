@@ -19,8 +19,7 @@ const calculateOrderAmount = (items: AddCartType[]) => {
 };
 
 export const POST = async (
-  request: NextApiRequest,
-  response: NextApiResponse
+  request: any,
 ) => {
   // get user
   const userSession = await getServerSession(authOptions);
@@ -33,7 +32,7 @@ export const POST = async (
   }
 
   // Extract data from body
-  const { items, payment_intent_id } = request.body;
+  const { items, payment_intent_id } = await request.json();
 
   // data necessary for order
   const orderData = {
