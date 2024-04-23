@@ -18,11 +18,33 @@ model User {
   sessions      Session[]
   stripeCustomerId String?
 
- 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  orders Order[]
 }
- 
+
+model Order {
+  id            String          @id @default(cuid())
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  amount  Float
+  currency String
+  status String
+  createdAt DateTime @default(now())
+  paymentIntentID String? @unique
+  products Product[]
+}
+
+model Product {
+  id            String          @id @default(cuid())
+  name String
+  description String?
+  unit_amount Float
+  image String?
+  quantity Float @default(0)
+  orders Order[]
+}
+
 model Account {
   userId            String
   type              String
